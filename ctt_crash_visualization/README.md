@@ -23,7 +23,6 @@ After plotting the speed for each street segment, I needed a way to visualize th
 
 Combining this information with the crashes located on each segment individually, we get the following graphs. 
 
-[visualization: segment_1203-segment_1249.png's, no particular order needed]
 ![](https://github.com/thenick775/terbine_visualizations/blob/master/ctt_crash_visualization/graphics/segment_1203.png)
 ![](https://github.com/thenick775/terbine_visualizations/blob/master/ctt_crash_visualization/graphics/segment_1207.png)
 ![](https://github.com/thenick775/terbine_visualizations/blob/master/ctt_crash_visualization/graphics/segment_1228.png)
