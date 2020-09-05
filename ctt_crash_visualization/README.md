@@ -21,7 +21,7 @@ I then realized that there were disparities between the dataset's schemas, and s
 
 After plotting the speed for each street segment, I needed a way to visualize the variation between the data points. I settled on using the Mean absolute deviation (MAD), to reduce the dispersion caused by extreme outliers.
 
-Combining this information with the crashes located on each segment individually, we get the following graphs. 
+Combining this information with the crashes located on each segment individually, we get graphs of the following form: 
 
 ![](https://github.com/thenick775/terbine_visualizations/blob/master/ctt_crash_visualization/graphics/segment_1203.png)
 ![](https://github.com/thenick775/terbine_visualizations/blob/master/ctt_crash_visualization/graphics/segment_1207.png)
