@@ -1,0 +1,135 @@
+body {
+	background-color: #F0F0F0;
+}
+
+#pieChart {    
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:730px;
+	height: 910px;
+	padding-top: 170px;
+	padding-bottom: 70px;
+	padding-left: 20px;
+	margin: 15px;
+	background-color: #FFFFFF;
+}
+
+#lineChart {    
+	position:absolute;
+	top:0px;
+	left:775px;
+	height: 115px;
+	width: 880px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 325px;
+	margin: 15px;
+	background-color: #FFFFFF;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 170px;					
+    height: 60px;					
+    padding: 2px;				
+    font: 14px sans-serif;		
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+}
+
+#barChart {
+	position:absolute;
+	top:170px;
+	left:775px;
+	width: 1205px;
+	height: 960px;
+	margin: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: -20px;
+	background-color: #FFFFFF;
+}
+
+.slice {
+   font-size: 12pt;
+   font-family: Verdana;
+   fill: white; //svg specific - instead of color
+   font-weight: bold;	
+} 
+
+/*for line chart*/
+.axis path, .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges; //The shape-rendering property is an SVG attribute, used here to make sure our axis and its tick mark lines are pixel-perfect. 
+}
+
+.line {
+  fill: none;
+  stroke-width: 3px;
+}
+
+.dot {
+  stroke-width: 1.5px;
+}
+				
+
+.axis text {
+    font-family: Verdana;
+    font-size: 11px;
+}
+
+.title {
+	font-family: Verdana;
+    font-size: 15px;		
+}
+
+.titlebarx{
+	font-family: Verdana;
+    font-size: 14px;
+}
+
+.xAxis {
+    font-family: verdana;
+    font-size: 11px;
+    fill: black;
+}  
+
+.yAxis {
+    font-family: verdana;
+    font-size: 11px;
+    fill: white;
+}
+
+  
+table {
+	border-collapse:collapse;
+	border: 0px;	
+	font-family: Verdana;	
+	color: #5C5558;
+	font-size: 12px;
+	text-align: right;			
+}
+
+td {
+	padding-left: 10px;		
+}
+
+#lineChartTitle1 {
+	font-family: Verdana;
+	font-size  : 14px;
+	fill       : black;
+	text-anchor: middle;
+}
+
+#lineChartTitle2 {
+	font-family: Verdana;
+	font-size  : 72px;
+	fill       : grey;
+	text-anchor: middle;
+	font-weight: bold;
+}
