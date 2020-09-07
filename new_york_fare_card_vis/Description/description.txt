@@ -13,3 +13,11 @@ along with providing better information to guide city wide initiatives such as d
 of public transport options relative to the climate and infrastructure needs of the City itself.
 
 Data also has the potential to be loaded dynamically in real time to display the latest data for any defined time range.
+
+Data Sources:
+
+Fare Card Counts (Continuous data): terbine.io, feed: Fare Card Counts / New York City, New York, United States GUID: 3cb075d6-674f-4427-ac87-4a5d04163297
+
+technologies used:
+
+d3.js
