@@ -1,6 +1,6 @@
 ![](https://github.com/thenick775/terbine_visualizations/blob/master/australia_solar/graphics/demo.png)
 
-This choropleth map describes the estimates of actual regional rooftop solar generation in Australia, with a granularity of half an hour.
+This interactive choropleth map describes the estimates of actual regional rooftop solar generation in Australia, with a granularity of half an hour.
 
 The data is mapped to the 'plasma' color scale,
 
@@ -25,7 +25,7 @@ To make for an accurate country wide visualization, values from Queensland and T
 
 We can see after examination of the choropleth map, that the regions with higher populations are generating the most power using rooftop solar installations. In the regions with lower generation values, this could be due to the geographic spread of the regional population, or this could be an indicator that there exist natural or infrastructure related impasses to increasing rooftop photovoltaic output in those areas.
 
-Below we can see in more detail the differences between regional generation output
+Below we can see in more detail the differences between regional generation output as a function of time:
 
 ![](https://github.com/thenick775/terbine_visualizations/blob/master/australia_solar/graphics/ausave.png)
 
