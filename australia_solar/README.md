@@ -10,15 +10,24 @@ where colors to the left indicate low values, and colors to the right indicate h
 
 The data originally was broken down into the different original AEMO regions:
 
-NSW1
+NSW1 (New South Wales)
+
 QLD1 (Queensland)
+
 QLDC (Queensland Central)
+
 QLDN (Queensland North)
+
 QLDS (Queensland South)
+
 SA1  (South Australia)
+
 TAS1 (Tasmania)
+
 TASN (Tasmania North)
+
 TASS (Tasmania South)
+
 VIC1 (Victoria)
 
 To make for an accurate country wide visualization, values from Queensland and Tasmania were each aggregated together to show their total output relative to the other regions present.
