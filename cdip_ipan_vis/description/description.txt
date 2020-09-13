@@ -1,6 +1,8 @@
-The Coastal Data Information Program is an extensive network for monitoring waves along United States and international coastlines. Since its inception in 1975, the program has produced a vast database of publicly-accessible environmental data for use by coastal engineers and planners, scientists, mariners, and marine enthusiasts.
+The Coastal Data Information Program (CDIP) is an extensive network for monitoring waves along United States and international coastlines.
+Since its inception in 1975, the program has produced a vast database of publicly-accessible environmental data for use by coastal engineers and planners,
+scientists, mariners, and marine enthusiasts.
 
-This interactive radar chart describes measurements made by the Coastal Data Information Program (CDIP) directional waverider buoy
+This interactive radar chart describes measurements made by the CDIP directional waverider buoy
 located located 1 nautical mile offshore of Ipan Beach Park, in Ipan, Talofofo, Guam, from August through the beginning of September 2020.
 
 Here we can compare the sea surface temperature, wave directions, wave heights, and wave periods 
