@@ -1,5 +1,7 @@
 ![](https://github.com/thenick775/terbine_visualizations/blob/master/australia_solar/graphics/demo.png)
 
+[Try the interactive version live!](https://raw.githack.com/thenick775/terbine_visualizations/livepreview/australia_solar/australia_vis_src/australia_solar_choropleth/index.html)
+
 This interactive choropleth map describes the estimates of actual regional rooftop solar generation in Australia, with a granularity of half an hour.
 
 The data is mapped to the 'plasma' color scale,
