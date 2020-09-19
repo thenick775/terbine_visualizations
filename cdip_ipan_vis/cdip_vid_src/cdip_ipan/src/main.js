@@ -11,7 +11,7 @@ var play = false;
 var scaled=true;
 
 
-d3.json("http://localhost:8768/data/cdipres.json", function(datajson) {
+d3.json("https://raw.githack.com/thenick775/terbine_visualizations/livepreview/cdip_ipan_vis/cdip_vid_src/cdip_ipan/data/cdipres.json", function(datajson) {
 
     if (size > 0) { //set initial data
         var json = [datajson[thecount].data]
