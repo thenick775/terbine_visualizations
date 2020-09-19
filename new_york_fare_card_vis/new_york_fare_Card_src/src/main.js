@@ -575,7 +575,7 @@ function updateLineChart(group, colorChosen) {
                 .duration(200)
                 .style("opacity", 1.0);
             div.html("Total: " + d.stat_time_tot + "<br/>Date: " + d.from_date)
-                .style("left", (d3.event.pageX) + "px")
+                .style("left", (d3.event.pageX*1.3/*for zoom compensation*/) + "px")
                 .style("top", (d3.event.pageY - 28) + "px");
         })
         .on("mouseout", function(d) {
