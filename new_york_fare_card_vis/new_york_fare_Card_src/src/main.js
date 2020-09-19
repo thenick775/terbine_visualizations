@@ -155,7 +155,7 @@ function dsBarChartConfig() {
     };
 }
 
-d3.csv("https://raw.githack.com/thenick775/terbine_visualizationslivepreview/new_york_fare_card_vis/new_york_fare_Card_src/data/dfbar.csv", function(dataset) { //create within this function, as dataset is only accessible here after ajax call finishes
+d3.csv("https://raw.githack.com/thenick775/terbine_visualizations/livepreview/new_york_fare_card_vis/new_york_fare_Card_src/data/dfbar.csv", function(dataset) { //create within this function, as dataset is only accessible here after ajax call finishes
     dataset.forEach(function(d) { //edit data format for plot
         d.full_fare = +d.full_fare;
         d.senior_citizen_disabled = +d.senior_citizen_disabled;
