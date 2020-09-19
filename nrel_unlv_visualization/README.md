@@ -1,5 +1,7 @@
 ![](https://github.com/thenick775/terbine_visualizations/blob/master/nrel_unlv_visualization/graphics/demo.png)
 
+[Try it live!](https://raw.githack.com/thenick775/terbine_visualizations/livepreview/nrel_unlv_visualization/src/nrel_unlv_vis/src/dashboard.html)
+
 This visualization describes the solar irradiance data collected at the University of Nevada Las Vegas (UNLV), which has been made possible through a partnership between the university, and the U.S. Department of Energy's National Renewable Energy Laboratory (NREL).
 
 The data displayed in this interactive dashboard consists of raw and calcluated irradiance data, measured in watts per square meter (W/m^2), and ancillary meteorological data collected from nearby instruments.
