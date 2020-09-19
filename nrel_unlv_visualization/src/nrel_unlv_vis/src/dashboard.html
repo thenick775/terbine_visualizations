@@ -117,7 +117,7 @@ function finddate(arr, date, isstart) {
 }
 
 //main chart
-d3.csv("http://localhost:8768/data/dfall.csv", function(data) {
+d3.csv("https://raw.githack.com/thenick775/terbine_visualizations/livepreview/nrel_unlv_visualization/src/nrel_unlv_vis/data/dfall.csv", function(data) {
     let mchartnamemap = new Map();
     mchartnamemap.set('Direct Normal [W/m^2]', 'rgb(000,255,000)'); //map names of main chart to colors on graph
     mchartnamemap.set('Global Horiz [W/m^2]', 'rgb(000,000,255)'); 
