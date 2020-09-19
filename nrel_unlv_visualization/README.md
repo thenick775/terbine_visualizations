@@ -2,7 +2,7 @@
 
 This visualization describes the solar irradiance data collected at the University of Nevada Las Vegas (UNLV), which has been made possible through a partnership between the university, and the U.S. Department of Energy's National Renewable Energy Laboratory (NREL).
 
-The data displayed in this dashboard consists of raw and calcluated irradiance data, measured in watts per square meter (W/m^2), and ancillary meteorological data collected from nearby instruments.
+The data displayed in this interactive dashboard consists of raw and calcluated irradiance data, measured in watts per square meter (W/m^2), and ancillary meteorological data collected from nearby instruments.
 
 Data such as this can be used to continually monitor and model the effects of natural phenomena locally, such as how the smoke downwind of wildfire areas can affect visibility, solar energy production, and the local microclimate in real time. 
 
