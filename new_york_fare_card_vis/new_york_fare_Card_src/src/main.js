@@ -11,7 +11,7 @@ var formatAsP = d3.format("%"),
 //pie chart generation
 function dsPieGen() {
     //the address used below is of python simpleserver I am using to serve my content, this would have to be set to the root directory of the project when deployed
-    var data = d3.csv("http://localhost:8765/data/dfpie.csv", function(dataset) { //create within this function, as dataset is only accessible here after ajax call finishes
+    var data = d3.csv("https://raw.githack.com/thenick775/terbine_visualizations/livepreview/new_york_fare_card_vis/new_york_fare_Card_src/data/dfpie.csv", function(dataset) { //create within this function, as dataset is only accessible here after ajax call finishes
         dataset.forEach(function(d) { //edit data format for plot
             d.total_percentage = +d.total_percentage;
         });
@@ -155,7 +155,7 @@ function dsBarChartConfig() {
     };
 }
 
-d3.csv("http://localhost:8765/data/dfbar.csv", function(dataset) { //create within this function, as dataset is only accessible here after ajax call finishes
+d3.csv("https://raw.githack.com/thenick775/terbine_visualizationslivepreview/new_york_fare_card_vis/new_york_fare_Card_src/data/dfbar.csv", function(dataset) { //create within this function, as dataset is only accessible here after ajax call finishes
     dataset.forEach(function(d) { //edit data format for plot
         d.full_fare = +d.full_fare;
         d.senior_citizen_disabled = +d.senior_citizen_disabled;
@@ -405,7 +405,7 @@ function g3getstt(d) {
     return d.stat_time_tot
 }
 
-d3.csv("http://localhost:8765/data/dfline.csv", function(dataset) { //create within this function, as dataset is only accessible here after ajax call finishes
+d3.csv("https://raw.githack.com/thenick775/terbine_visualizations/livepreview/new_york_fare_card_vis/new_york_fare_Card_src/data/dfline.csv", function(dataset) { //create within this function, as dataset is only accessible here after ajax call finishes
     dataset.forEach(function(d) { //edit data format for plot
         d.stat_time_tot = +d.stat_time_tot;
     });
