@@ -84,7 +84,7 @@ L.control.layers({
     "Australian States": australiaOverlay
 }).addTo(map);
 
-d3.json("http://localhost:8768/states.min.geojson", function(data) { //initialize data, and add configuration to map here
+d3.json("https://raw.githack.com/thenick775/terbine_visualizations/livepreview/australia_solar/australia_vis_src/australia_solar_choropleth/states.min.geojson", function(data) { //initialize data, and add configuration to map here
     geoobjs = data.features;
     australiaOverlay.addTo(map);
 
@@ -97,7 +97,7 @@ d3.json("http://localhost:8768/states.min.geojson", function(data) { //initializ
 
 });
 
-d3.csv("http://localhost:8768/dfchoro1.csv", function(datasetch) {
+d3.csv("https://raw.githack.com/thenick775/terbine_visualizations/livepreview/australia_solar/australia_vis_src/australia_solar_choropleth/dfchoro1.csv", function(datasetch) {
     datasetch.forEach(function(d) { //edit data format for plot
         d.NSW1 = +d.NSW1;
         d.QLDA = +d.QLDA;
@@ -110,7 +110,7 @@ d3.csv("http://localhost:8768/dfchoro1.csv", function(datasetch) {
 
     var datecount = 0
     var dataraw;
-    d3.csv("http://localhost:8768/dfraw1.csv", function(datasetraw) {
+    d3.csv("https://raw.githack.com/thenick775/terbine_visualizations/livepreview/australia_solar/australia_vis_src/australia_solar_choropleth/dfraw1.csv", function(datasetraw) {
         datasetraw.forEach(function(d) {
             d.NSW1 = +d.NSW1;
             d.QLDA = +d.QLDA;
