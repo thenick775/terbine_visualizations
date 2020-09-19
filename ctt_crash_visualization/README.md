@@ -9,7 +9,7 @@ The goal of this project was to show that fluctuations in the speed of a road se
 
 After examining the map in more detail, it became apparent that although crashes occurred all over the city, within this 4 day period they were mainly centered on major streets spanning Chicago from north to south.
 
-[Link to Kepler Visualization](https://github.com/thenick775/terbine_visualizations/tree/master/ctt_crash_visualization/kepler_html) (simply download and open html)
+[Try it live! Link to Kepler Visualization](https://raw.githack.com/thenick775/terbine_visualizations/master/ctt_crash_visualization/kepler_html/ctt_crash_kepler.gl.html)
 
 After graphing the crashes per arterial street, this was also able to be confirmed for this short time period sample.
 
