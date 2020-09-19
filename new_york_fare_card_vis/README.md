@@ -1,3 +1,5 @@
+[Try the visualization live!](https://raw.githack.com/thenick775/terbine_visualizations/livepreview/new_york_fare_card_vis/new_york_fare_Card_src/src/dashboard.html)
+
 This is a visualization detailing the statistical breakdown of MetroCard swipes made each week by customers entering stations of the New York City Subway, PATH, AirTrain JFK and the Roosevelt Island Tram over a one month period.
 
 Here we can compare interactively:
