@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 12px Helvetica;
+}
+
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+#tooltip {
+	position:absolute;
+	background-color:lightgray;
+	padding:5px;
+	right:160px;
+	top:150px;
+	width:170px;
+	display:none;
+	font-size:14;
+}
+
+#thermo {
+	position:absolute;
+	left:200px;
+	top:430px;
+}
+
+.windrose {
+	top:50px;
+}
+
+.tempdirdat{
+	writing-mode: tb-rl;
+    transform: rotate(-180deg);
+}
+
+.fulldat{
+	position:absolute;
+	left:320px;
+	top:430px;
+}
+
+.dailydat{
+	position:absolute;
+	left:1100px;
+	top:430px;
+}
+
+</style>
+<body>
+<div id='tooltip'></div>
+<div id="thermo"></div>
+<script src="https://d3js.org/d3.v3.js"></script>
+<script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+<script>
+var margin = {
+    top: 20,
+    right: 50,
+    bottom: 30,
+    left: 50
+};
+var width = 1300 - margin.left - margin.right;
+var height = 400 - margin.top - margin.bottom;
+var starty = 100;
+var legydec = 30;
+var color = d3.scale.category10();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+const tooltip = d3.select('#tooltip');
+const tooltipLine = svg.append('line');
+
+function removeTooltip() {
+    if (tooltip) tooltip.style('display', 'none');
+    if (tooltipLine) tooltipLine.attr('stroke', 'none');
+    d3.select(".winddirdat1").attr('display', 'none')
+    d3.select(".winddirdat2").attr('display', 'none')
+    d3.select(".winddirdat3").attr('display', 'none')
+    d3.select(".tempdirdat").attr("display", "none")
+}
+
+function finddate(arr, date, isstart) {
+    const {
+        length
+    } = arr;
+    const id = length + 1;
+    const found = arr.some(el => el.date === date);
+    var res;
+    if (found) {
+        res = arr.map(function(e) {
+            return e.date;
+        }).indexOf(date)
+    } else if (isstart) {
+        res = 0
+    } else if (!isstart) {
+        res = arr.length - 1
+    }
+    return res;
+}
+
+//main chart
+d3.csv("http://localhost:8768/data/dfall.csv", function(data) {
+    let mchartnamemap = new Map();
+    mchartnamemap.set('Direct Normal [W/m^2]', 'rgb(000,255,000)'); //map names of main chart to colors on graph
+    mchartnamemap.set('Global Horiz [W/m^2]', 'rgb(000,000,255)'); 
+    mchartnamemap.set('Diffuse Horiz (calc) [W/m^2]', 'rgb(255,000,000)');
+
+    data.forEach(function(d) {
+        d["Direct Normal [W/m^2]"] = +d["Direct Normal [W/m^2]"];
+        d["Global Horiz [W/m^2]"] = +d["Global Horiz [W/m^2]"];
+        d["Diffuse Horiz (calc) [W/m^2]"] = +d["Diffuse Horiz (calc) [W/m^2]"];
+        d["Avg Wind Direction @ 30ft [deg from N]"] = +d["Avg Wind Direction @ 30ft [deg from N]"];
+        d["Dry Bulb Temp [deg C]"] = +d["Dry Bulb Temp [deg C]"]
+        d["Global UVA [W/m^2]"] = +d["Global UVA [W/m^2]"]
+        d["Global UVE [Index]"] = +d["Global UVE [Index]"]
+        d["Global UVE [W/m^2]"] = +d["Global UVE [W/m^2]"]
+        d["Avg Wind Speed @ 30ft [m/s]"] = +d["Avg Wind Speed @ 30ft [m/s]"]
+        d["Peak Wind Speed @ 30ft [m/s]"] = +d["Peak Wind Speed @ 30ft [m/s]"]
+    });
+    //console.log(data)
+
+    var xScale = d3.scale.linear()
+        .domain([finddate(data, '2020-259-320', true), finddate(data, '2020-259-2000', false)]) //[0, data.length - 1])
+        .range([0, width]);
+
+    var yScale = d3.scale.linear()
+        .domain([0, d3.max(data, function(d) {
+            return Math.max(d["Direct Normal [W/m^2]"], d["Global Horiz [W/m^2]"], d["Diffuse Horiz (calc) [W/m^2]"]);
+        })])
+        .range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .tickFormat(function(d, i) {
+            return data[d].date;
+        })
+        .ticks(10)
+        .innerTickSize(15)
+        .outerTickSize(0)
+        .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .tickFormat(function(d) {
+            return d;
+        })
+        .ticks(10)
+        .innerTickSize(15)
+        .outerTickSize(0)
+        .orient("left");
+
+    var line = d3.svg.line()
+        .interpolate("basis")
+        .x(function(d, i) {
+            return xScale(i);
+        })
+        .y(function(d) {
+            return yScale(d.vvalue);
+        });
+
+
+    color.domain(d3.keys(data[0]).filter(function(key) {
+        return key !== "date";
+    }));
+
+    var irradiance = color.domain().map(function(idx) {
+        return {
+            name: idx,
+            values: data.map(function(d) {
+                return {
+                    date: d.date,
+                    vvalue: d[idx]
+                };
+            })
+        };
+    });
+
+    yScale.domain([
+        d3.min(irradiance, function(c) {
+            return d3.min(c.values, function(v) {
+                return v.vvalue;
+            });
+        }),
+        d3.max(irradiance, function(c) {
+            return d3.max(c.values, function(v) {
+                return v.vvalue;
+            });
+        })
+    ]);
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+    svg.append("line")
+        .attr({
+            "class": "horizontalGrid",
+            "x1": 0,
+            "x2": width,
+            "y1": yScale(0),
+            "y2": yScale(0),
+            "fill": "none",
+            "shape-rendering": "crispEdges",
+            "stroke": "black",
+            "stroke-width": "0.5px",
+            "stroke-dasharray": ("3, 3")
+        });
+
+    svg.selectAll(".irradline")
+        .data(irradiance)
+        .enter().append("g")
+        .attr("class", "irradline");
+
+    //console.log(irradiance)
+
+    var path = svg.selectAll(".irradline").append("path")
+        .attr("class", "line")
+        .attr("d", function(d) {
+            if (mchartnamemap.has(d.name)) {
+                //console.log("line name: " + d.name)
+                return line(d.values);
+            }
+        })
+        .style("stroke", function(d) {
+            if (mchartnamemap.has(d.name)) {
+                //console.log(d.name)
+                //console.log(mchartnamemap.get(d.name))
+                return mchartnamemap.get(d.name);
+            }
+        });
+
+    //add legend
+    svg.append("svg")
+        .attr("class", "datavis")
+        .attr("y", "-50px")
+        .attr("x", "800px")
+
+    var t = d3.select(".datavis")
+    for (let k of mchartnamemap.keys()) {
+        t.append("circle").attr("cx", 200).attr("cy", starty + legydec).attr("r", 6).style("fill", mchartnamemap.get(k))
+        t.append("text").attr("x", 220).attr("y", starty + legydec).text(k).style("font-size", "14px").attr("alignment-baseline", "middle")
+        starty -= legydec
+    }
+
+    //add tooltip, update other charts/tlabels
+    function drawtooltips() {
+        const index = Math.floor((xScale.invert(d3.mouse(toolTipBox.node())[0])));
+
+        tooltipLine.attr('stroke', 'black') //add the tooltip vertical line
+            .attr('x1', xScale(index))
+            .attr('x2', xScale(index))
+            .attr('y1', 0)
+            .attr('y2', height);
+
+        tooltip.html("Year-DOY-PST:<br/>" + data[index].date) //adjust the tool tip hover info
+            .style('display', 'block')
+            .append('div')
+            .html("Diffuse Horiz (calc): " + data[index]["Diffuse Horiz (calc) [W/m^2]"] + "<br/>" + "Global Horiz: " + data[index]["Global Horiz [W/m^2]"] + "<br/>" + "Direct Normal: " + data[index]["Direct Normal [W/m^2]"])
+
+        //adjust wind rose
+        d3.select(".windroseline").transition().duration(100).ease("linear").attr("transform", function() {
+            var r = windDirArray[index][1] ///windDirArray[0];//d["Avg Wind Direction @ 30ft [deg from N]"];
+            return "rotate(" + r + ")translate(0,0)";
+        })
+        //update floating labels
+        d3.select(".winddirdat1").attr('display', 'block').html("Dir: " + windDirArray[index][1] + " Deg.")
+        d3.select(".winddirdat2").attr('display', 'block').html("Speed: " + data[index]["Avg Wind Speed @ 30ft [m/s]"] + " (m/s)")
+        d3.select(".winddirdat3").attr('display', 'block').html("Peak: " + data[index]["Peak Wind Speed @ 30ft [m/s]"] + " (m/s)")
+        d3.select(".tempdirdat").attr('display', 'block').html(thermDirArray[index][1] + " Deg. C")
+        //update thermometer
+        updatetherm(thermDirArray[index][1], 250, 0)
+    }
+
+    d3.selectAll(".line").each(function(d, i) {
+        var totalLength = this.getTotalLength() //total length of path to animate
+
+        d3.select(this).attr("stroke-dasharray", totalLength + " " + totalLength)
+            .attr("stroke-dashoffset", totalLength)
+            .transition()
+            .duration(3000)
+            .attr("class", "line")
+            .ease("linear")
+            .attr("stroke-dashoffset", 0);
+    })
+
+    //wind rose
+    var windwidth, windheight, windoffSetX, windoffSetY, pi;
+    windwidth = 205;
+    windheight = 300;
+    windoffSetX = 102.5;
+    windoffSetY = 140;
+    pi = Math.PI;
+    scaledeg = d3.scale.linear().domain([0, 360]).range([0, 2 * pi]);
+
+    var windRose = d3.select("body")
+        .append("svg").attr("class", "windrose").attr("width", windwidth).attr("height", windheight) /*.style("left","20px")*/ .append("g")
+        .attr("transform", "translate(" + windoffSetX + "," + windoffSetY + ")");
+
+    //floating labels
+    windRose.append("text")
+        .html("Wind Dir")
+        .attr("top", "25px")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "14")
+        .attr("y", "-100px");
+
+    windRose.append("text")
+        .html("")
+        .attr("top", "25px")
+        .attr("text-anchor", "left")
+        .attr("class", "winddirdat1")
+        .attr("font-size", "14")
+        .attr("y", "100px")
+        .attr("x", "-40px");
+
+    windRose.append("text")
+        .html("")
+        .attr("top", "25px")
+        .attr("text-anchor", "left")
+        .attr("class", "winddirdat2")
+        .attr("font-size", "14")
+        .attr("y", "120px")
+        .attr("x", "-40px");
+
+    windRose.append("text")
+        .html("")
+        .attr("top", "25px")
+        .attr("text-anchor", "left")
+        .attr("class", "winddirdat3")
+        .attr("font-size", "14")
+        .attr("y", "140px")
+        .attr("x", "-40px");
+
+    windRose.append("text")
+        .html("N")
+        .attr("top", "25px")
+        .attr("text-anchor", "middle")
+        .attr("y", "-60px");
+
+    windRose.append("text")
+        .html("S")
+        .attr("top", "25px")
+        .attr("text-anchor", "middle")
+        .attr("y", "60px");
+
+    windRose.append("text")
+        .html("E")
+        .attr("x", "60px")
+        .attr("text-anchor", "middle")
+
+    windRose.append("text")
+        .html("W")
+        .attr("x", "-60px")
+        .attr("text-anchor", "middle")
+
+    windRose.append("svg:circle")
+        .attr("r", 80).attr("fill", "none")
+        .attr("class", "outercircle")
+        .attr("stroke", "black")
+        .attr("stroke-width", 2);
+
+    windRose.append("svg:circle")
+        .attr("r", 4)
+        .attr("fill", "black")
+        .attr("class", "innercircle");
+
+    const windDirArray = data.map((d) => [d.date, d["Avg Wind Direction @ 30ft [deg from N]"]]) //convienence access
+
+    //add wind rose pointer
+    var triangleSize = 1;
+    var verticalTransform = 1 + Math.sqrt(triangleSize);
+
+    var triangle = d3.svg.symbol().type('triangle-up');
+
+    d3.select(".windrose").append("svg:defs").append("svg:marker")
+        .attr("id", "triangle")
+        .attr("refX", 14)
+        .attr("refY", 9.2)
+        .attr("markerWidth", 20)
+        .attr("markerHeight", 20)
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", d3.svg.symbol().type("triangle-up").size(5))
+        .attr("transform", function(d) {
+            return "rotate(" + -30 + ")translate(8.5,15)";
+        })
+        .style("stroke", "black");
+
+    //add wind rose line
+    windRose.append("line").attr("class", "windroseline").attr("x1", function(d) {
+            return 0
+        })
+        .attr("y1", function(d) {
+            return 0
+        })
+        .attr("x2", function(d) {
+            return 0
+        })
+        .attr("y2", function(d) {
+            return -40
+        })
+        .attr("stroke-width", 3)
+        .attr("marker-end", "url(#triangle)")
+        .attr("stroke", "black").transition().duration(750).ease("linear").attr("transform", function() { //attatched intro animation, similar to line chart but staged so the needle moves
+            return "rotate(" + 90 + ")translate(0,0)";
+        }).transition().duration(750).ease("linear").attr("transform", function() {
+            return "rotate(" + 180 + ")translate(0,0)";
+        }).transition().duration(750).ease("linear").attr("transform", function() {
+            return "rotate(" + 270 + ")translate(0,0)";
+        }).transition().duration(750).ease("linear").attr("transform", function() {
+            return "rotate(" + windDirArray[finddate(data, '2020-259-2000', false)][1] + ")translate(0,0)";
+        });
+
+
+    function updatetable() { //called on click
+        //console.log("updating table")
+        const index = Math.floor((xScale.invert(d3.mouse(toolTipBox.node())[0])));
+
+        result = data.slice(index - 2, index + 3).map(Object.values);
+        //console.log(result)
+
+        d3.select("body > table > tbody")
+            .selectAll("tr").data(result)
+            .selectAll("td")
+            .data(function(d) {
+                return d;
+            })
+            .text(function(d) {
+                return d;
+            })
+    }
+
+    //add transparent mask so we dont have to interfere with the graph itself
+    //within this is where interaction and updates will take place
+    toolTipBox = svg.append('rect')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('opacity', 0)
+        .on('mousemove', drawtooltips)
+        .on('mouseout', removeTooltip)
+        .on("click", updatetable);
+
+    var thermwidth = 110,
+        thermheight = 250,
+        maxTemp = 55.0,
+        minTemp = -10;
+    currentTemp = 0;
+
+    var thermbottomY = thermheight - 5,
+        thermtopY = 5,
+        bulbRadius = 20,
+        tubeWidth = 21.5,
+        tubeBorderWidth = 1,
+        mercuryColor = "rgb(230,0,0)",
+        innerBulbColor = "rgb(230, 200, 200)"
+    tubeBorderColor = "#999999";
+
+    var bulb_cy = thermbottomY - bulbRadius,
+        bulb_cx = thermwidth * 3 / 4 // 2,
+    top_cy = thermtopY + tubeWidth / 2;
+
+
+    d3.select(".thermometer").remove()
+    currentTemp = currentTemp * Math.random()
+    //console.log("current temp")
+    //console.log(currentTemp)
+    var svgtherm = d3.select("#thermo")
+        .append("svg")
+        .attr("class", "thermometer")
+        .attr("width", thermwidth)
+        .attr("height", thermheight);
+
+
+    var defs = svg.append("defs");
+
+    // Define the radial gradient for the bulb fill colour
+    var bulbGradient = defs.append("radialGradient")
+        .attr("id", "bulbGradient")
+        .attr("cx", "50%")
+        .attr("cy", "50%")
+        .attr("r", "50%")
+        .attr("fx", "50%")
+        .attr("fy", "50%");
+
+    bulbGradient.append("stop")
+        .attr("offset", "0%")
+        .style("stop-color", innerBulbColor);
+
+    bulbGradient.append("stop")
+        .attr("offset", "90%")
+        .style("stop-color", mercuryColor);
+
+    // Circle element for rounded tube top
+    svgtherm.append("circle")
+        .attr("r", tubeWidth / 2)
+        .attr("cx", thermwidth * 3 / 4)
+        .attr("cy", top_cy)
+        .style("fill", "#FFFFFF")
+        .style("stroke", tubeBorderColor)
+        .style("stroke-width", tubeBorderWidth + "px");
+
+    // Rect element for tube
+    svgtherm.append("rect")
+        .attr("x", thermwidth * 3 / 4 /*/ 2*/ - tubeWidth / 2)
+        .attr("y", top_cy)
+        .attr("height", bulb_cy - top_cy)
+        .attr("width", tubeWidth)
+        .style("shape-rendering", "crispEdges")
+        .style("fill", "#FFFFFF")
+        .style("stroke", tubeBorderColor)
+        .style("stroke-width", tubeBorderWidth + "px");
+
+    // White fill for rounded tube top circle element
+    // to hide the border at the top of the tube rect element
+    svgtherm.append("circle")
+        .attr("r", tubeWidth / 2 - tubeBorderWidth / 2)
+        .attr("cx", thermwidth * 3 / 4) /// 2)
+        .attr("cy", top_cy)
+        .style("fill", "#FFFFFF")
+        .style("stroke", "none")
+
+    // Main bulb of thermometer (empty), white fill
+    svgtherm.append("circle")
+        .attr("r", bulbRadius)
+        .attr("cx", bulb_cx)
+        .attr("cy", bulb_cy)
+        .style("fill", "#FFFFFF")
+        .style("stroke", tubeBorderColor)
+        .style("stroke-width", tubeBorderWidth + "px");
+
+    // Rect element for tube fill colour
+    svgtherm.append("rect")
+        .attr("x", thermwidth * 3 / 4 /*/ 2*/ - (tubeWidth - tubeBorderWidth) / 2)
+        .attr("y", top_cy)
+        .attr("height", bulb_cy - top_cy)
+        .attr("width", tubeWidth - tubeBorderWidth)
+        .style("shape-rendering", "crispEdges")
+        .style("fill", "#FFFFFF")
+        .style("stroke", "none");
+
+    // Scale step size
+    var step = 15;
+    // Determine a suitable range of the temperature scale
+    var domain = [
+        step * Math.floor(minTemp / step),
+        step * Math.ceil(maxTemp / step)
+    ];
+
+    // D3 scale object
+    var scale = d3.scale.linear()
+        .range([bulb_cy - bulbRadius / 2 - 8.5, top_cy])
+        .domain(domain);
+
+    var tubeFill_bottom = bulb_cy,
+        tubeFill_top = scale(currentTemp);
+
+    // Rect element for the red mercury column
+    svgtherm.append("rect")
+        .attr("class", "tempbarint")
+        .attr("x", thermwidth * 3 / 4 /*/ 2*/ - (tubeWidth - 10) / 2)
+        //.transition().duration(250).ease("linear")
+        .attr("y", tubeFill_top)
+        .attr("width", tubeWidth - 10)
+        .attr("height", tubeFill_bottom - tubeFill_top) //>0 ? tubeFill_bottom - tubeFill_top : 0)
+        .style("shape-rendering", "crispEdges")
+        .style("fill", mercuryColor)
+
+    // Main thermometer bulb fill
+    svgtherm.append("circle")
+        .attr("r", bulbRadius - 6)
+        .attr("cx", bulb_cx)
+        .attr("cy", bulb_cy)
+        .style("fill", "url(#bulbGradient)")
+        .style("stroke", mercuryColor)
+        .style("stroke-width", "2px");
+
+    svgtherm.append("text")
+        .html("")
+        .attr("top", "25px")
+        .attr("text-anchor", "left")
+        .attr("class", "tempdirdat")
+        .attr("font-size", "14")
+        .attr("y", "-150px").style("text-orientation", "upright")
+        .attr("x", "-25px");
+
+    var objAgent = navigator.userAgent;
+    if ((objOffsetVersion = objAgent.indexOf("Chrome")) != -1) { //fix upside down text in chrome
+        d3.select(".tempdirdat").style("text-orientation", "");
+    }
+
+    // Values to use along the scale ticks up the thermometer
+    var tickValues = d3.range((domain[1] - domain[0]) / step + 1).map(function(v) {
+        return domain[0] + v * step;
+    });
+
+    // D3 axis object for the temperature scale
+    var axis = d3.svg.axis()
+        .scale(scale)
+        .innerTickSize(7)
+        .outerTickSize(0)
+        .tickValues(tickValues)
+        .orient("left");
+
+    // Add the axis to the image
+    var svgAxis = svgtherm.append("g")
+        .attr("id", "tempScale")
+        .attr("transform", "translate(" + (thermwidth * 3 / 4 /*/ 2*/ - tubeWidth / 2) + ",0)")
+        .call(axis);
+
+    // Format text labels
+    svgAxis.selectAll(".tick text")
+        .style("fill", "#777777")
+        .style("font-size", "10px");
+
+    // Set main axis line to no stroke or fill
+    svgAxis.select("path")
+        .style("stroke", "none")
+        .style("fill", "none")
+
+    // Set the style of the ticks 
+    svgAxis.selectAll(".tick line")
+        .style("stroke", tubeBorderColor)
+        .style("shape-rendering", "crispEdges")
+        .style("stroke-width", "1px");
+
+    const thermDirArray = data.map((d) => [d.date, d["Dry Bulb Temp [deg C]"]])
+
+    function updatetherm(val, dur, delay) { //here is where we can iterate through the data and transition based on color values
+        d3.select('#thermo').empty();
+
+        var tubeFill_bottom = bulb_cy,
+            tubeFill_top = scale(val);
+        currentTemp = val
+        d3.select(".tempbarint")
+            .transition().delay(delay).duration(dur).ease("linear")
+            .attr("y", tubeFill_top)
+            .attr("height", tubeFill_bottom - tubeFill_top)
+    }
+
+    //intro anim for thermometer
+    updatetherm(-20, 700, 50)
+    updatetherm(20, 700, 350)
+    updatetherm(0, 700, 950)
+    updatetherm(50, 700, 1550)
+    updatetherm(data[finddate(data, '2020-259-2000', false)]["Dry Bulb Temp [deg C]"], 750, 2150)
+
+    //table generation
+    result = data.map(Object.values);
+    var table = d3.select('body').append('table')
+        .style("border-collapse", "collapse")
+        .attr("width", "750px")
+        .attr("height", "240px")
+        .style("border", "2px black solid")
+        .attr("class", "fulldat");
+
+    var tablecolumns = ["Date", "Direct Normal", "Global Horiz", "Diffuse Horiz", "Wind Dir", "Dry Bulb Temp", "UVA [W/m^2]", "UVE [W/m^2]", "UVE Index", "Avg Wind Speed", "Peak Wind Speed"]
+    // headers
+    table.append("thead").append("tr")
+        .selectAll("th")
+        .data(tablecolumns)
+        .enter().append("th")
+        .text(function(d) {
+            return d;
+        })
+        .style("border", "1px black solid")
+        .style("padding", "5px")
+        .style("background-color", "lightgray")
+        .style("font-size", "13px");
+
+    // data
+    var tmploc = finddate(data, '2020-259-2000', false)
+    table.append("tbody")
+        .selectAll("tr").data(result.slice(tmploc-4, tmploc+1))
+        .enter().append("tr")
+        .selectAll("td")
+        .data(function(d) {
+            return d;
+        })
+        .enter().append("td")
+        .style("border", "1px black solid")
+        .style("padding", "5px")
+        .on("mouseover", function() {
+            d3.select(this).style("background-color", "lightgray");
+        })
+        .on("mouseout", function() {
+            d3.select(this).style("background-color", "white");
+        })
+        .text(function(d) {
+            return d;
+        })
+        .style("font-size", "12px");
+
+    //daily table
+    var dailytable = d3.select('body').append('table')
+        .style("border-collapse", "collapse")
+        .attr("width", "80px")
+        .attr("height", "240px")
+        .style("border", "2px black solid")
+        .attr("class", "dailydat");
+
+    // headers
+    dailytable.append("thead").append("tr")
+        .selectAll("th")
+        .data(["Daily Statistics",""])
+        .enter().append("th")
+        .text(function(d) {
+            return d;
+        })
+        .style("border", "1px black solid")
+        .style("padding", "5px")
+        .style("background-color", "lightgray")
+        .style("font-size", "13px");
+
+    // data
+    dailytable.append("tbody")
+        .selectAll("tr").data([["Net Direct",d3.sum(data, d => d["Direct Normal [W/m^2]"]).toFixed(3)],["Net Global",d3.sum(data, d => d["Global Horiz [W/m^2]"]).toFixed(3)],["Net Diffuse",d3.sum(data, d => d["Diffuse Horiz (calc) [W/m^2]"]).toFixed(3)],["Max Temp",d3.max(data, function(v) {return v["Dry Bulb Temp [deg C]"];})],["Min Temp",d3.min(data, function(v) {return v["Dry Bulb Temp [deg C]"];})],["Max Peak Wspd",d3.max(data, function(v) {return v["Peak Wind Speed @ 30ft [m/s]"];})]])
+        .enter().append("tr")
+        .selectAll("td")
+        .data(function(d) {
+            return d;
+        })
+        .enter().append("td")
+        .style("border", "1px black solid")
+        .style("padding", "5px")
+        .on("mouseover", function() {
+            d3.select(this).style("background-color", "lightgray");
+        })
+        .on("mouseout", function() {
+            d3.select(this).style("background-color", "white");
+        })
+        .text(function(d) {
+            return d;
+        })
+        .style("font-size", "12px");
+});
+
+</script>
+</body>
