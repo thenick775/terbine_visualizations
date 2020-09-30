@@ -5,10 +5,14 @@
 [Try it live!](https://raw.githack.com/thenick775/terbine_visualizations/livepreview/strainmeter_vis/src/strainmeterhorizonchart/index.html)
 
 How to operate:
+
 -Click anywhere on the chart to start/pause the animation
+
 -Use the text entry and `Set Playback` button to control the playback speed
+
 -Use the starting position button to quickly switch between the beginning of the measurements and 
  a little over halfway through the year to quickly see how strain has changed between these periods
+
 -Use the drop down menu to choose which strainmeter is displayed in the chart
 
 
