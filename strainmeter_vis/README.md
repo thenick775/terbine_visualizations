@@ -2,6 +2,8 @@
 
 ![](https://github.com/thenick775/terbine_visualizations/blob/master/strainmeter_vis/graphics/demo.png)
 
+[Try it live!](https://raw.githack.com/thenick775/terbine_visualizations/livepreview/strainmeter_vis/src/strainmeterhorizonchart/index.html)
+
 How to operate:
 -Click anywhere on the chart to start/pause the animation
 -Use the text entry and `Set Playback` button to control the playback speed
