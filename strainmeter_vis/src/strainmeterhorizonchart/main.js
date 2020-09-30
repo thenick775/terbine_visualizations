@@ -234,7 +234,7 @@ function run(filedf,startposf) {
             d3.selectAll("line").remove()
             svg.remove();
             console.log("startpos: ",startpos)
-            run("https://raw.githack.com/thenick775/terbine_visualizations/livepreview/strainmeter_vis/src/strainmeterhorizonchar/maindf_" + selectedOption + ".csv",startpos); //adjust based on selected strainmeter
+            run("https://raw.githack.com/thenick775/terbine_visualizations/livepreview/strainmeter_vis/src/strainmeterhorizonchart/maindf_" + selectedOption + ".csv",startpos); //adjust based on selected strainmeter
         })
 
     });
@@ -273,4 +273,4 @@ function setstart(){
 d3.select(".startButton").style("width","85px").style("top", "5px")
 d3.select(".startButton").on("click", setstart)
 
-run("https://raw.githack.com/thenick775/terbine_visualizations/livepreview/strainmeter_vis/src/strainmeterhorizonchar/maindf_B079.csv",startpos); //trigger initial run
+run("https://raw.githack.com/thenick775/terbine_visualizations/livepreview/strainmeter_vis/src/strainmeterhorizonchart/maindf_B079.csv",startpos); //trigger initial run
