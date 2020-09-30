@@ -1,0 +1,13 @@
+canvas {
+	outline: black 1px solid;
+}
+
+button {
+	position: relative;
+	top:10px;
+}
+
+input {
+	position: relative;
+	top:11px;
+}
