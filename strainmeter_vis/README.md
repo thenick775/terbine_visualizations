@@ -43,6 +43,9 @@ shades represent increasing positive strain values, with a white background as t
 The measurements displayed in the horizon charts are also scaled respective to the minimum and maximum values reported by the gauge it represents,
 so that small variations in the data can be visualized as well as large variations between different gauges within the same strainmeter.
 
+Here we can observe how the strain at each location varies over the year 2016. We can see the increase and decrease of strain in each gauge over
+time, the different frequencies of activity, and how this varies at each location.
+
 Sensors and data such as this allow scientists and engineers to measure the imperceptible deformation of the earth over time.
 This provides better insight into how the earth is moving in response to short term seismic events and at scale over time, along 
 with demonstrating how seismic and postseismic movement can be analyzed and used to enhance earthquake early warning systems.
