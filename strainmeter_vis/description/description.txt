@@ -42,11 +42,11 @@ with demonstrating how seismic and postseismic movement can be analyzed and used
 
 Data Sources:
 
-(Continuous data): feed: Borehole Strain / Jack Canyon Road, Parkfield, California, United States / 2016 guid: 68ddc187-0e09-4eaa-8eac-b5aebe349023
+(Archival data): feed: Borehole Strain / Jack Canyon Road, Parkfield, California, United States / 2016 guid: 68ddc187-0e09-4eaa-8eac-b5aebe349023
 
-(Continuous data): feed: Borehole Strain / Volcanic Trail, Orinda, California, United States / 2016 guid: 95e4fc58-8d87-43f8-b96b-121009db3f4f
+(Archival data): feed: Borehole Strain / Volcanic Trail, Orinda, California, United States / 2016 guid: 95e4fc58-8d87-43f8-b96b-121009db3f4f
 
-(Continuous data): feed: Borehole Strain / Asbestos Mountain, Riverside County, California, United States / 2016 guid: 702057bb-c641-4e02-ae71-ee88d5d49eae
+(Archival data): feed: Borehole Strain / Asbestos Mountain, Riverside County, California, United States / 2016 guid: 702057bb-c641-4e02-ae71-ee88d5d49eae
 
 Technologies Used:
 
