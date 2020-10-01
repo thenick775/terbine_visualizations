@@ -1,6 +1,6 @@
 ### terbine_visualizations
 
-This repository contains visualizations built using a multitude of real world sensor data.
+This repository contains interactive visualizations built using a multitude of real world sensor data.
 
 Try them live!
 
