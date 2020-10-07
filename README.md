@@ -2,7 +2,7 @@
 
 This repository contains interactive visualizations built using a multitude of real world sensor data.
 
-Try them live!
+Try them live! (preview images available in subfolders)
 
 [Chicago Traffic Tracker Speed vs Reported Accidents](https://raw.githack.com/thenick775/terbine_visualizations/master/ctt_crash_visualization/kepler_html/ctt_crash_kepler.gl.html)
 
