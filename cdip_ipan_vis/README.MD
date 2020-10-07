@@ -1,3 +1,5 @@
+![](https://github.com/thenick775/terbine_visualizations/blob/master/cdip_ipan_vis/graphics/demo.png)
+
 [Try the visualization live!](https://raw.githack.com/thenick775/terbine_visualizations/livepreview/cdip_ipan_vis/cdip_vid_src/cdip_ipan/src/radarchart.html)
 
 The Coastal Data Information Program (CDIP) is an extensive network for monitoring waves along United States and international coastlines.
