@@ -178,7 +178,7 @@ function Globe() {
             .style('stroke-width', 0.3)
             .style("opacity", 0.8)
 
-        d3.csv('statlonlat.csv', function(error, data) {
+        d3.csv('https://raw.githack.com/thenick775/terbine_visualizations/livepreview/tsunameter_vis/src/statlonlat.csv', function(error, data) {
             data.forEach(function(d) {
                 d.lon = +d.lon;
                 d.lat = +d.lat;
