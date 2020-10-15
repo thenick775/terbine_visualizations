@@ -1,0 +1,104 @@
+#### DART Tsunamter Visualization
+##### Written By: Nicholas VanCise
+
+![](https://github.com/thenick775/terbine_visualizations/blob/master/tsunameter_vis/graphics/demo.png)
+
+How to operate:
+
+-To select a station, drag and zoom the globe to view the station you wish to examine, and then click the station marker
+
+-To play the animated graph once a station is selected, press the 'Play' button
+
+-To adjust the speed of the animated graph, use the drop down to select a millisecond delay value (lower values generate a faster animation)
+
+This visualization describes measurements made by DART (Deep-ocean Assessment and Reporting of Tsunamis) tsunameters from around the world.
+Individual stations consist of a surface buoy connected to a bottom pressure recording (BPR) located on the seafloor. This BPR detects pressure
+changes caused by tsunamis and tides, which are used to calculate the sea floor depth below the sea surface.
+
+These tsunameters take measurements in 15 minute intervals while in standard mode, but when a tsunami is detected, the buoy begins transmitting in event mode, taking
+measurements every 15 seconds for several minutes, followed by 1 minute averages for 4 hours.
+
+To broadcast the data, a surface buoy first receives information from its BPR through an acoustic link, and then transmits this data to a passing satellite, which
+retransmits the data to ground stations for immediate dissemination into NOAA's Tsunami Warning Centers, NOAA's National Data Buoy Center (NDBC), and NOAA's Pacific
+Marine Environmental Laboratory (PMEL).
+
+The data displayed here is from the year 2018 for the majority of stations. If data was unavailable for this year, the most recent available year of data was chosen.
+Additionally, all data was converted from feet to meters.
+
+Within this visualization, we can observe one tsunami event early on in the year, being the Kodiak, Alaska Tsunami which occurred on January 23, 2018.
+This event is visible from several stations in the near vicinity, namely station 46409 and others near Alaska. During the event, you will see irregularities
+in the normally smooth slope of the line representing the sea height, showing the drops and then increases from the resulting waves.
+
+We can also observe the MeteoTsunami of 15 May, 2018, from station 44402 located off the northeast coast of the United States. Here we can observe the slight,
+but noticeable increase in sea levels at this location due to the severity of the passing storm system.
+
+These stations were developed for the early detection, measurement, and real time reporting of tsunamis in the open ocean. Analysis of this data, historically and
+in real time, currently provides the means to generate accurate and timely warnings that help to save the lives and property of coastal residents. This also reduces
+the economic and physical impact of this style of evacuation as a whole, while also ensuring that these evacuations are warranted.
+
+This network of tsunameters can also be used to analyze how ocean levels are changing over time around the world, which can help guide future proactive planning
+and government actions taken to mitigate the loss of life and property as sea levels continue to rise as a result of global warming.
+
+Data Sources:
+<details>
+  <summary>Click to expand!</summary>
+  
+  * (Archival data): feed: Sea Water Column Height / Coastal Waters, Conception, Chile / 2018 guid: caa30f16-a9c5-4222-9f99-4813988f896d
+* (Archival data): feed: Sea Water Column Height / Coastal Waters, Caldera, Chile / 2018 guid: 611883e1-5f86-4a21-9cdb-1152159648bc
+* (Archival data): feed: Sea Water Column Height / Coastal Waters, Antofagasta, Chile / 2018 guid: 4c2736a8-5d2e-493b-9c22-10441a44eeaa
+* (Archival data): feed: Sea Water Column Height / Coastal Waters, Arica, Chile / 2018 guid: 4fa8124b-a80a-49fd-880e-c3b16d2f29bc
+* (Archival data): feed: Sea Water Column Height / Hakateka Seamount, Southern Pacific Ocean / 2018 guid: 84cd99f5-cb18-4783-97c3-14c2a484a1d2
+* (Archival data): feed: Sea Water Column Height / Peru Basin, Southern Pacific Ocean / 2018 guid: b5f3fbc1-1aec-45cd-8c19-6ce5c0a8e41f
+* (Archival data): feed: Sea Water Column Height / Paramount Seamount, Northern Pacific Ocean / 2018 guid: 9bbfabf3-36fd-46df-91e9-f9eb9650f46b
+* (Archival data): feed: Sea Water Column Height / Tehuantepec Fracture Zone, Northern Pacific Ocean / 2018 guid: 9260d094-da4c-4066-b6b5-3386a5278a3d
+* (Archival data): feed: Sea Water Column Height / Moctezuma Trough, Northern Pacific Ocean / 2018 guid: 5b429144-c9fc-471e-b3eb-5c20df647f75
+* (Archival data): feed: Sea Water Column Height / Patton Escarpment, Northern Pacific Ocean / 2018 guid: 76d320b2-ea33-49d5-acc8-6b8552b3e925
+* (Archival data): feed: Sea Water Column Height / Boutelle Seamount, Northern Pacific Ocean / 2018 guid: 598bbc2c-fcd8-4e37-a5bc-6b14e3560522
+* (Archival data): feed: Sea Water Column Height / President Jackson Seamounts, Northern Pacific Ocean / 2018 guid: e0b2151f-a63d-4a22-b681-1e0878411fa0
+* (Archival data): feed: Sea Water Column Height / Thompson Seamount, Northern Pacific Ocean / 2018 guid: df89f028-0304-4e8c-b55c-188de14a2288
+* (Archival data): feed: Sea Water Column Height / Heck Seamount, Northern Pacific Ocean / 2018 guid: 95dd3214-aaad-4e50-8418-b5db4d83ff7c
+* (Archival data): feed: Sea Water Column Height / Surveyor Seachannel, Northern Pacific Ocean / 2018 guid: d89fd4ce-66a4-4563-bc97-3c50e914ab67
+* (Archival data): feed: Sea Water Column Height / Smook Seamount, Northern Pacific Ocean / 2018 guid: 748eb609-3b47-4557-9b19-27f66b86bd71
+* (Archival data): feed: Sea Water Column Height / Sagittarius Seachannel, Northern Pacific Ocean / 2018 guid: dc0f468c-ae41-4334-b0da-634aa97bb4f8
+* (Archival data): feed: Sea Water Column Height / Aleutian Trench, Northern Pacific Ocean / 2018 guid: facb5d0c-a295-48c4-a76e-59c0358bf2d9
+* (Archival data): feed: Sea Water Column Height / Umnak Island, Northern Pacific Ocean / 2018 guid: 86ff8f8b-f69b-4e34-89d8-94070ae2ab49
+* (Archival data): feed: Sea Water Column Height / Chinook Trough, Northern Pacific Ocean / 2018 guid: 73f9ea37-8a3f-4e30-a5a6-4ded1f1ecc13
+* (Archival data): feed: Sea Water Column Height / James Knoll, Northern Pacific Ocean / 2018 guid: f9d94e3e-c3c6-4baa-bc45-3ec2052ed63b
+* (Archival data): feed: Sea Water Column Height / Emperor Seamount Chain, Northern Pacific Ocean / 2018 guid: 2d4877bd-16f7-4d72-9925-c4d144338e2a
+* (Archival data): feed: Sea Water Column Height / Northwest Pacific Basin, Northern Pacific Ocean / 2018 guid: 1ba52250-7057-430d-a57d-c9781047ecd5
+* (Archival data): feed: Sea Water Column Height / Morozko Seamount, Northern Pacific Ocean / 2017 guid: 27faa280-0268-464b-be4b-e81966bcb417
+* (Archival data): feed: Sea Water Column Height / Zenkevich Rise, Northern Pacific Ocean / 2018 guid: e4731df2-60e0-4a10-ad7c-70812fd00e0b
+* (Archival data): feed: Sea Water Column Height / Hotta Seamount, Northern Pacific Ocean / 2018 guid: 00805473-b1b5-4d4e-b164-8627c23bebe9
+* (Archival data): feed: Sea Water Column Height / Isakov Seamount, Northern Pacific Ocean / 2018 guid: a136dd49-174a-49d4-9d11-151aad2f661c
+* (Archival data): feed: Sea Water Column Height / Kawakami Seamount, Northern Pacific Ocean / 2018 guid: 9eb4eeb9-37a9-4a75-99b6-071c42a734f3
+* (Archival data): feed: Sea Water Column Height / Aoi Seamount Chain, Philippine Sea, Northern Pacific Ocean / 2017 guid: 6528a732-9f4b-4341-8c5b-9d904d94bbcc
+* (Archival data): feed: Sea Water Column Height / Southern Philippine Sea, Northern Pacific Ocean / 2018 guid: 141ca9d7-443b-49b2-8673-dc6833492907
+* (Archival data): feed: Sea Water Column Height / Southern Mariana Trench, Northern Pacific Ocean / 2018 guid: fedd820a-49f6-4971-9953-d540b40c66cb
+* (Archival data): feed: Sea Water Column Height / Vityaz Trench, Southern Pacific Ocean / 2017 guid: 886f5f71-057d-497a-82cc-cffc84253c6f
+* (Archival data): feed: Sea Water Column Height / Indus Fan, Arabian Sea, Indian Ocean / 2018 guid: e122f582-1227-4dd3-9e77-6551403176c0
+* (Archival data): feed: Sea Water Column Height / Northern Bengal Fan, Bay of Bengal, Indian Ocean / 2018 guid: fe878552-8486-4d3f-b012-b3ec0f6ef0f4
+* (Archival data): feed: Sea Water Column Height / Central Bengal Fan, Bay of Bengal, Indian Ocean / 2018 guid: 90f9d2d7-dd51-48d6-9776-e9ce68f8c961
+* (Archival data): feed: Sea Water Column Height / Southern Bay of Bengal, Indian Ocean / 2018 guid: 5bb2483f-dee0-4da9-9906-b342fe90e46f
+* (Archival data): feed: Sea Water Column Height / Northern Bay of Bengal, Indian Ocean / 2018 guid: e7fdfc7c-59ca-4698-9874-35bcb3fac4c8
+* (Archival data): feed: Sea Water Column Height / Ninetyeast Ridge, Southern Bay of Bengal, Indian Ocean / 2018 guid: f9128dd4-34b0-44c0-9cf0-61b8e57f5793
+* (Archival data): feed: Sea Water Column Height / Resolution Ridge, Tasman Basin, Tasman Sea, Southern Pacific Ocean / 2018 guid: 4eaa7a52-7744-4511-80f3-7716c55ad33d
+* (Archival data): feed: Sea Water Column Height / Joseph Gilbert Seamount, Tasman Basin, Tasman Sea, Southern Pacific Ocean / 2018 guid: cb340c79-ffa0-4738-9c69-759ae0d8b371
+* (Archival data): feed: Sea Water Column Height / Mellish Reef, Coral Sea, Southern Pacific Ocean / 2018 guid: 516e068e-22a0-4e73-a080-4d52055b29f4
+* (Archival data): feed: Sea Water Column Height / Coral Basin, Coral Sea, Southern Pacific Ocean / 2018 guid: fdcc1fa5-e218-4884-927b-37971a1c94cd
+* (Archival data): feed: Sea Water Column Height / Argo Abyssal Plain, Indian Ocean / 2018 guid: 98478535-7057-4e92-aea0-a91beee8c290
+* (Archival data): feed: Sea Water Column Height / Roo Rise, Indian Ocean / 2018 guid: d293f3ed-2b46-4e3b-8723-fce7803f078b
+* (Archival data): feed: Sea Water Column Height / Tonga Trench, Southern Pacific Ocean / 2018 guid: 8ccaf70d-733c-4a19-8df3-b1d11067377a
+* (Archival data): feed: Sea Water Column Height / Robbie Ridge, Southern Pacific Ocean / 2018 guid: dd69baf5-6aee-4261-9a9d-23497f79868b
+* (Archival data): feed: Sea Water Column Height / Indianapolis Seamount, Northern Pacific Ocean / 2018 guid: 576ac5f4-c310-4171-9d92-30f7e7fc6b7b
+* (Archival data): feed: Sea Water Column Height / Mexico Basin, Gulf of Mexico, Northern Atlantic Ocean / 2018 guid: 99c84d97-ab97-451f-b249-ebed806cb6a6
+* (Archival data): feed: Sea Water Column Height / Block Canyon, Northern Atlantic Ocean / 2018 guid: 399c31e4-04ff-46fa-9710-11e9892fa94f
+* (Archival data): feed: Sea Water Column Height / Nares Plain, Northern Atlantic Ocean / 2018 guid: 80731054-84d7-422c-a41d-c545e19ba7a3
+
+</details>
+
+
+Technologies Used:
+
+Javascript
+
+d3.js
