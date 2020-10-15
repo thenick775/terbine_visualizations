@@ -15,3 +15,5 @@ Try them live! (preview images available in subfolders)
 [Strainmeter Horizon Charts](https://raw.githack.com/thenick775/terbine_visualizations/livepreview/strainmeter_vis/src/strainmeterhorizonchart/index.html)
 
 [CDIP Waverider Radar Chart](https://raw.githack.com/thenick775/terbine_visualizations/livepreview/cdip_ipan_vis/cdip_vid_src/cdip_ipan/src/radarchart.html)
+
+[DART Tsunameter Visualization](https://raw.githack.com/thenick775/terbine_visualizations/livepreview/tsunameter_vis/src/index.html)
