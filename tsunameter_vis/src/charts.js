@@ -26,7 +26,7 @@ function Charts() {
     };
 
     //var tsudata;
-    d3.csv('/data/46409.csv', function(error, data) { //temporary filler
+    d3.csv('https://raw.githack.com/thenick775/terbine_visualizations/livepreview/tsunameter_vis/src/data/46409.csv', function(error, data) { //temporary filler
         data.forEach(function(d) {
             d["sea_floor_depth_below_sea_surface (m)"] = +d["sea_floor_depth_below_sea_surface (m)"]
             d["time (unix)"] = Date.parse(d["time (UTC)"])
