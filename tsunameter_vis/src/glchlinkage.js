@@ -54,7 +54,7 @@ function getHasSelectedStation() {
 
 //resets the chart fully, meant to be used externally with vars defined in charts.js (for chart reuse)
 function resetchart(newstat) {
-    d3.csv('/data/' + newstat + '.csv', function(error, data) {
+    d3.csv('https://raw.githack.com/thenick775/terbine_visualizations/livepreview/tsunameter_vis/src/data/' + newstat + '.csv', function(error, data) {
         data.forEach(function(d) {
             d["sea_floor_depth_below_sea_surface (m)"] = +d["sea_floor_depth_below_sea_surface (m)"]
             d["time (unix)"] = Date.parse(d["time (UTC)"])
