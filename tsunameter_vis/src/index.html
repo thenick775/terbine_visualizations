@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tsunameter Map & Globe</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Custom Chiasm plugins for this example. -->
+    <script src="globe.js"></script>
+    <script src="charts.js"></script>
+    <script src="glchlinkage.js"></script>
+
+
+    <style>
+
+      body {
+        background-color: #313133;
+      }
+
+      div.tooltip { 
+        position: absolute;     
+        text-align: center;     
+        width: 120px;       
+        padding: 2px;       
+        font: 12px sans-serif;    
+        background: lightsteelblue; 
+        border: 0px;    
+        border-radius: 8px;     
+        pointer-events: none;     
+      }
+
+      .speeddropdown{
+        -webkit-appearance: menulist-button !important;
+        line-height:24px !important;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <script>
+      
+      Globe();
+
+      Charts();
+    
+    </script>
+  </body>
+</html>
