@@ -17,3 +17,6 @@ Try them live! (preview images available in subfolders)
 [CDIP Waverider Radar Chart](https://raw.githack.com/thenick775/terbine_visualizations/livepreview/cdip_ipan_vis/cdip_vid_src/cdip_ipan/src/radarchart.html)
 
 [DART Tsunameter Visualization](https://raw.githack.com/thenick775/terbine_visualizations/livepreview/tsunameter_vis/src/index.html)
+
+
+These links were made using raw.githack.com, if the page fails to load properly or data is slow to display please refresh and try again.
