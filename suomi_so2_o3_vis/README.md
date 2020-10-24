@@ -1,5 +1,7 @@
 ![](https://github.com/thenick775/terbine_visualizations/blob/suomi_setup/suomi_so2_o3_vis/graphics/demo.png)
 
+[Try it live! Link to Kepler Visualization](https://raw.githack.com/thenick775/terbine_visualizations/master/suomi_so2_o3_vis/src/kepler.gl.html)
+
 How to operate:
 
 -Click play to run the default animation configuration
