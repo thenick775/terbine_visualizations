@@ -18,5 +18,7 @@ Try them live! (preview images available in subfolders)
 
 [DART Tsunameter Visualization](https://raw.githack.com/thenick775/terbine_visualizations/livepreview/tsunameter_vis/src/index.html)
 
+[Suomi Sulfur Dioxide/Ozone Visualization](https://raw.githack.com/thenick775/terbine_visualizations/master/suomi_so2_o3_vis/src/kepler.gl.html)
+
 
 These links were made using raw.githack.com, if the page fails to load properly or data is slow to display please refresh and try again.
