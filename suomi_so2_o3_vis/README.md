@@ -42,6 +42,8 @@ Data Sources:
 
 (Archival data): feed: Sulfur Dioxide Profile / Shanghai, China / 2018 guid: 59353304-80ea-4d56-8a62-a4f44313f386
 
+Additional data was taken from the data source to fill in realtime and historical gaps.
+
 Technologies Used:
 
 Jupyter-Notebook
