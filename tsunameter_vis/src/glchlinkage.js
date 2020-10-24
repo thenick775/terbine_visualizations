@@ -28,7 +28,7 @@ function stop_globe_rotation() {
     if (globetimeron) {
         globetimeron = false
         globetimer.stop()
-        globebuttontext.text("Rotate").attr("x", 30)
+        globebuttontext.text("Rotate").attr("x", 35)
     }
 }
 
@@ -54,7 +54,7 @@ function getHasSelectedStation() {
 
 //resets the chart fully, meant to be used externally with vars defined in charts.js (for chart reuse)
 function resetchart(newstat) {
-    d3.csv('/data/' + newstat + '.csv', function(error, data) {
+    d3.csv('./data/' + newstat + '.csv', function(error, data) {
         data.forEach(function(d) {
             d["sea_floor_depth_below_sea_surface (m)"] = +d["sea_floor_depth_below_sea_surface (m)"]
             d["time (unix)"] = Date.parse(d["time (UTC)"])
@@ -68,7 +68,7 @@ function resetchart(newstat) {
         console.log("resetting chart new file:", newstat)
         clearTimeout(charttimer);
         chtimeron = false
-        chbuttontext.text("Play").attr("x", 700/2-50)
+        chbuttontext.text("Play").attr("x", 700/2-70);
         chartplaying = false;
         indexcount = 0;
         time = tsudata[0]["time (unix)"]
@@ -115,8 +115,8 @@ function resetchart(newstat) {
             .datum(chartdata)
             .classed('line', true)
             .style('fill', 'none')
-            .style('stroke', 'steelblue')
-            .style('stroke-width', '1.5px');
+            .style('stroke', '#33a6cc')
+            .style('stroke-width', '2.5px');
 
     });
 

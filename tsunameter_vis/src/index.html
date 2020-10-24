@@ -14,7 +14,10 @@
     <style>
 
       body {
-        background-color: #313133;
+        background-color: #162037;
+		background: radial-gradient(circle, rgba(27,42,71,1) 32%, rgba(0,9,11,1) 100%);
+		color: #D7E8F4;
+		font-family: Arial, Helvetica, sans-serif;
       }
 
       div.tooltip { 
@@ -22,18 +25,66 @@
         text-align: center;     
         width: 120px;       
         padding: 2px;       
-        font: 12px sans-serif;    
+        font: 12px sans-serif;  
+		color: #000000;
         background: lightsteelblue; 
         border: 0px;    
         border-radius: 8px;     
         pointer-events: none;     
       }
-
+	  
+	  @media (max-width: 671px) {
+		.charts {
+			border: .5px;
+		}
+	  }
+	  
       .speeddropdown{
         -webkit-appearance: menulist-button !important;
         line-height:24px !important;
       }
-
+	  
+	  select option {
+	    box-sizing: content-box;
+		padding: 10px 0;
+		background-color: #162037;
+		border: none;
+		outline:0px;
+	  }
+	  
+	  text {
+		color: #FFFFFF;
+	  }
+	  
+	  .tick text {
+	    fill: #D7E8F4;
+	  }
+	  
+	  .tick line {
+		stroke: #D7E8F4;
+		stroke-width: 2px;
+	  }
+	  
+	  .domain {
+		stroke: #D7E8F4;
+		stroke-width: 2px;
+	  }
+	  
+	  table {
+	    border: 3px #374A71 solid;
+	  }
+	  
+	  thead {
+		background-color: #162037;
+	  }
+	  
+	  th {
+	    border: 3px #374A71 solid;
+	  }
+	  
+	  td {
+	    border: 3px #374A71 solid;
+	  }
     </style>
 
   </head>
