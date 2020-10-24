@@ -26,7 +26,7 @@ can be used to identify areas with consistently high pollution levels.
 This relationship can also be examined for the city as a whole, where the graph below illustrates the rise and fall of so3 and o3 as
 a monthly average of all measurements.
 
-![](https://github.com/thenick775/terbine_visualizations/blob/suomi_setup/suomi_so2_o3_vis/graphics/fullplot.jpg)
+![](https://github.com/thenick775/terbine_visualizations/blob/master/suomi_so2_o3_vis/graphics/fullplot.jpg)
 
 The data displayed here is used to monitor pollution caused by burning fossil fuels in the atmosphere, which allows users to recreate and examine pollution levels and movement above major cities around the world. This data can also be used to train predictive models and map future pollutant output, allowing for scientific guidance on green energy initiatives and continual monitoring of the global atmosphere.
 
