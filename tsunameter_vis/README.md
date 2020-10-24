@@ -1,7 +1,7 @@
 #### DART Tsunamter Visualization
 ##### Written By: Nicholas VanCise
 
-![](https://github.com/thenick775/terbine_visualizations/blob/master/tsunameter_vis/graphics/demo.png)
+![](https://github.com/thenick775/terbine_visualizations/blob/master/tsunameter_vis/graphics/demo2.png)
 
 How to operate:
 
