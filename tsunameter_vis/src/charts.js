@@ -37,9 +37,15 @@ function Charts() {
         tsudata = data;
 
         chartsdivtes = holder.append("svg")
-            .style("background-color", "#f2f2f2")
-            .style("left", "50%")
-            .attr("width", '50%')
+			.style("background-color", "#26385B")
+            .style("background-color", "#26385B50")
+			.style("border", "3px #26385B solid")
+			.style("padding", "2% 1.6% 2% 1.6%")
+            .style("left", "41%")
+			.style("top", "0")
+			.style("border-radius", "5px")
+			.attr("class", "charts")
+            .attr("width", '44%')
             .attr("height", '50%')
             .attr('viewBox', '0 0 ' + Math.min(box.width, box.height) + ' ' + Math.min(box.width, box.height))
             .attr('preserveAspectRatio', 'xMinYMin')
@@ -102,8 +108,8 @@ function Charts() {
             .datum(chartdata)
             .classed('line', true)
             .style('fill', 'none')
-            .style('stroke', 'steelblue')
-            .style('stroke-width', '1.5px');
+            .attr('stroke', '#ff9900')
+            .attr('stroke-width', '2.5px');
 
         function chartupdate() {
             oldtime = time;
@@ -130,7 +136,7 @@ function Charts() {
             if (indexcount > tsudata.length - 1) {
                 clearTimeout(charttimer);
                 chtimeron = false
-                chbuttontext.text("Play").attr("x", 35)
+                chbuttontext.text("Play").attr("x", box.width/2-70)
                 chartplaying = false;
                 filefinished = true;
                 indexcount = 0; //needs to be here or else it doesnt reset correctly on the next go around
@@ -161,8 +167,8 @@ function Charts() {
                 .datum(chartdata)
                 .classed('line', true)
                 .style('fill', 'none')
-                .style('stroke', 'steelblue')
-                .style('stroke-width', '1.5px');
+                .attr('stroke', '#ff9900')
+                .attr('stroke-width', '2.5px');
         }
 
         function chartdraw(customdur) {
@@ -218,17 +224,17 @@ function Charts() {
         }
 
         function chbuttonclickfunc() {
-            chplaybutton.attr("fill", "#FFF")
+            chplaybutton.attr("fill", "#ff9900")
             if (!getHasSelectedStation()) {
                 return
             } else if (chtimeron) {
                 clearTimeout(charttimer);
                 chtimeron = false
-                chbuttontext.text("Play").attr("x", box.width/2-50)
+                chbuttontext.text("Play").attr("x", box.width/2-70)
                 chartplaying = false;
             } else {
                 chtimeron = true
-                chbuttontext.text("Pause").attr("x", box.width/2-55)
+                chbuttontext.text("Pause").attr("x", box.width/2-75)
                 chartupdate();
                 chartplaying = true;
                 stop_globe_rotation()
@@ -240,32 +246,39 @@ function Charts() {
         }
 
         var chplaybutton = chartsdivtes.append("rect")
-            .attr("fill", "#FFF")
+            .attr("fill", "#ff9900")
             .attr("stroke", "#000")
             .attr("stroke-width", "0.2")
-            .attr("x", box.width/2-60)
+            .attr("x", box.width/2 - 100)
             .attr("y", box.height / 2 + 105)
-            .attr("width", 50)
-            .attr("height", 30)
+            .attr("width", 90)
+            .attr("height", 45)
             .attr("r", 20)
             .on("click", chbuttonclickfunc)
             .on("mousedown", chbutmousedown);
 
         chbuttontext = chartsdivtes.append("text")
             .text("Play")
-            .attr("x", box.width/2-50)
-            .attr("y", box.height / 2 + 125)
+            .attr("x", box.width/2-70)
+            .attr("y", box.height / 2 + 132)
+			.style("font-size", "16px")
+			.style("font-weight", "700")
+			.style("fill", "#FFFFFF")
             .on("click", chbuttonclickfunc)
             .on("mousedown", chbutmousedown);
 
         dropdown = chartsdivtes.append("foreignObject") //for dynamically setting the animation speed
-            .attr("width", 60)
-            .attr("height", 40)
+            .attr("width", 90)
+            .attr("height", 45)
             .attr("x", box.width/2+10)
             .attr("y", box.height * 7.5 / 12 + 18)
             .append("xhtml:select")
-            .style("width", "50px")
-            .style("height", "30px")
+            .style("width", "90px")
+            .style("height", "45px")
+			.style("background-color", "#ff9900")
+			.style("font-size", "16px")
+			.style("font-weight", "700")
+			.style("color", "#FFFFFF")
             .attr("class", "speeddropdown")
             .on('change', function() {
                 var newData = eval(d3.select(this).property('value'));
@@ -298,24 +311,27 @@ function Charts() {
 
         chartsdivtes.append("rect")
             .attr("class", "chintro")
-            .attr("fill", "#FFF")
-            .attr("stroke", "#000")
-            .attr("stroke-width", "0.2")
-            .attr("x", box.width / 2 - 120)
-            .attr("y", box.height / 4 - 20)
-            .attr("width", 240)
-            .attr("height", 30)
+            .attr("fill", "darkgray")
+            //.attr("stroke", "#000")
+            //.attr("stroke-width", "0.2")
+            .attr("x", box.width / 2 - 150)
+            .attr("y", box.height / 4 - 27)
+            .attr("width", 300)
+            .attr("height", 45)
             .attr("r", 20)
 
         chartsdivtes.append("text")
             .attr("class", "chintro")
             .style("text-anchor", "middle")
             .text("Select a station to view its chart!")
+			.style("font-size", "16px")
+			.style("font-weight", "700")
+			.style("fill", "#FFFFFF")
             .attr("x", box.width / 2)
             .attr("y", box.height / 4)
 
         var d3ondrag = d3.drag().on('drag', () => {
-            chplaybutton.attr("fill", "#FFF")
+            chplaybutton.attr("fill", "#ff9900")
         });
 
         chplaybutton.call(d3ondrag);
@@ -324,13 +340,15 @@ function Charts() {
         //tables
         var table = chartsdivtes.append("foreignObject")
             .attr("width", box.width)
-            .attr("height", 160)
+            .attr("height", 180)
             .attr("y", box.height * 8.5 / 12 + 10)
             .append("xhtml:table")
+			.style("min-width", "60%")
             .style("border-collapse", "collapse")
-            .style("border", "2px black solid")
+			.style("margin-top", "2%")
             .style("margin-left", "auto")
             .style("margin-right", "auto")
+			.style("text-align", "left")
             .attr("class", "statinfo");
 
         table.append("thead").append("tr")
@@ -340,10 +358,8 @@ function Charts() {
             .text(function(d) {
                 return d;
             })
-            .style("border", "1px black solid")
             .style("padding", "5px")
-            .style("background-color", "lightgray")
-            .style("font-size", "13px");
+            .style("font-size", "14px");
 
         // data
         table.append("tbody").attr("class", "stationtbody")
@@ -359,18 +375,11 @@ function Charts() {
                 return d;
             })
             .enter().append("td")
-            .style("border", "1px black solid")
             .style("padding", "5px")
-            .on("mouseover", function() {
-                d3.select(this).style("background-color", "lightgray");
-            })
-            .on("mouseout", function() {
-                d3.select(this).style("background-color", "white");
-            })
             .text(function(d) {
                 return d;
             })
-            .style("font-size", "13px");
+            .style("font-size", "14px");
 
     });
 

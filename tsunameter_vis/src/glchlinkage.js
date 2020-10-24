@@ -28,7 +28,7 @@ function stop_globe_rotation() {
     if (globetimeron) {
         globetimeron = false
         globetimer.stop()
-        globebuttontext.text("Rotate").attr("x", 30)
+        globebuttontext.text("Rotate").attr("x", 35)
     }
 }
 
@@ -68,7 +68,7 @@ function resetchart(newstat) {
         console.log("resetting chart new file:", newstat)
         clearTimeout(charttimer);
         chtimeron = false
-        chbuttontext.text("Play").attr("x", 700/2-50)
+        chbuttontext.text("Play").attr("x", 700/2-70);
         chartplaying = false;
         indexcount = 0;
         time = tsudata[0]["time (unix)"]
@@ -115,8 +115,8 @@ function resetchart(newstat) {
             .datum(chartdata)
             .classed('line', true)
             .style('fill', 'none')
-            .style('stroke', 'steelblue')
-            .style('stroke-width', '1.5px');
+            .style('stroke', '#33a6cc')
+            .style('stroke-width', '2.5px');
 
     });
 

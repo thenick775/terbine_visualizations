@@ -83,8 +83,8 @@ function Globe() {
         .call(responsivefy)
 
     let globe = svg.append("circle")
-        .attr("fill", "#000")
-        .attr("stroke", "#000")
+        .attr("fill", "#1A7893")
+        .attr("stroke", "#1A7893")
         .attr("stroke-width", "0.2")
         .attr("cx", box.width / 2)
         .attr("cy", box.height / 2)
@@ -92,11 +92,11 @@ function Globe() {
 
     function clicked(d, i) {
         remove_chart_select_msg()
-        playbutton.attr("fill", "#FFF")
+        playbutton.attr("fill", "#ff9900")
         if (globetimeron) {
             globetimeron = false
             globetimer.stop()
-            globebuttontext.text("Rotate").attr("x", 30)
+            globebuttontext.text("Rotate").attr("x", 45)
         }
         if (d3.event.defaultPrevented) return; // dragged
 
@@ -118,11 +118,11 @@ function Globe() {
     }
 
     svg.call(d3.drag().on('drag', () => {
-            playbutton.attr("fill", "#FFF")
+            playbutton.attr("fill", "#ff9900")
             if (globetimeron) {
                 globetimeron = false
                 globetimer.stop()
-                globebuttontext.text("Rotate").attr("x", 30)
+                globebuttontext.text("Rotate").attr("x", 45)
             }
             if (parseFloat(div.style("opacity")) == 0.9) { //remove tooltip if I havent already removed it
                 div.transition()
@@ -139,11 +139,11 @@ function Globe() {
             svg.selectAll("path").attr("d", path)
         }))
         .call(d3.zoom().on('zoom', () => {
-            playbutton.attr("fill", "#FFF")
+            playbutton.attr("fill", "#ff9900")
             if (globetimeron) {
                 globetimeron = false
                 globetimer.stop()
-                globebuttontext.text("Rotate").attr("x", 30)
+                globebuttontext.text("Rotate").attr("x", 45)
             }
             //console.log(d3.event.transform.k)
             if (parseFloat(div.style("opacity")) == 0.9) { //remove tooltip if I havent already removed it
@@ -173,9 +173,9 @@ function Globe() {
             .enter().append("path")
             .attr("class", d => "country_" + d.properties.name.replace(" ", "_"))
             .attr("d", path)
-            .attr("fill", "white")
-            .style('stroke', 'black')
-            .style('stroke-width', 0.3)
+            .attr("fill", "#79B93B")
+            .style('stroke', '#FFFFFF')
+            .style('stroke-width', 0.5)
             .style("opacity", 0.8)
 
         d3.csv('https://raw.githack.com/thenick775/terbine_visualizations/livepreview/tsunameter_vis/src/statlonlat.csv', function(error, data) {
@@ -196,7 +196,7 @@ function Globe() {
                 .enter().append('path')
                 .attr('class', 'circle_tsunameter')
                 .attr('fill', function(d) {
-                    return "red";
+                    return "#ff9900";
                 })
                 .datum(function(d) {
                     return {
@@ -218,7 +218,8 @@ function Globe() {
 
     //rotation button
     function buttonclickfunc() {
-        playbutton.attr("fill", "#FFF")
+        playbutton.attr("fill", "#ff9900")
+			.attr("height", "45px")
         if (getChartPlaying()) {
             return
         }
@@ -230,11 +231,11 @@ function Globe() {
         if (globetimeron) {
             globetimeron = false
             globetimer.stop()
-            globebuttontext.text("Rotate").attr("x", 30)
+            globebuttontext.text("Rotate").attr("x", 45)
         } else {
             globetimeron = true
             globetimer = d3.interval(timerfunc, 25)
-            globebuttontext.text("Stop").attr("x", 35)
+            globebuttontext.text("Stop").attr("x", 50)
         }
     }
 
@@ -243,21 +244,24 @@ function Globe() {
     }
 
     var playbutton = svg.append("rect")
-        .attr("fill", "#FFF")
-        .attr("stroke", "#000")
+        .attr("fill", "#ff9900")
+        .attr("stroke", "#FFFFFF")
         .attr("stroke-width", "0.2")
         .attr("x", 25)
         .attr("y", 35)
-        .attr("width", 50)
-        .attr("height", 30)
+        .attr("width", 90)
+        .attr("height", 45)
         .attr("r", 20)
         .on("click", buttonclickfunc)
         .on("mousedown", butmousedown)
 
     globebuttontext = svg.append("text")
         .text("Stop")
-        .attr("x", 35)
-        .attr("y", 55)
+        .attr("x", 50)
+        .attr("y", 64)
+		.style("font-size", "16px")
+		.style("font-weight", "700")
+		.style("fill", "#FFFFFF")
         .on("click", buttonclickfunc)
         .on("mousedown", butmousedown);
 
