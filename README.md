@@ -20,5 +20,7 @@ Try them live! In depth descriptions are available in the subfolders.
 
 [Suomi Sulfur Dioxide/Ozone Visualization](https://raw.githack.com/thenick775/terbine_visualizations/master/suomi_so2_o3_vis/src/kepler.gl.html)
 
+[Washington River Discharge Acoustic Doppler Velocimeter Visualization](https://raw.githack.com/thenick775/terbine_visualizations/master/river_discharge_wa/src/line.html)
+
 
 These links were made using raw.githack.com, if the page fails to load properly or data is slow to display please refresh and try again.
