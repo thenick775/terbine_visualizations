@@ -24,3 +24,5 @@ Try them live! In depth descriptions are available in the subfolders.
 
 
 These links were made using raw.githack.com, if the page fails to load properly or data is slow to display please refresh and try again.
+
+Additionally, the Terbine-Map visualization is available [here](https://github.com/thenick775/Terbine-Map), [try it live!](https://raw.githack.com/thenick775/Terbine-Map/master/potestaticmapboxv1.4.html)
